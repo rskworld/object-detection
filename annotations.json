@@ -1,0 +1,119 @@
+{
+    "_comment": "Object Detection Dataset - COCO Format Annotations",
+    "_info": {
+        "description": "Object Detection Dataset for YOLO, R-CNN, SSD training",
+        "url": "https://rskworld.in",
+        "version": "1.0",
+        "year": 2026,
+        "contributor": "RSK World",
+        "date_created": "2026-01-01"
+    },
+    "_developer": {
+        "website": "https://rskworld.in",
+        "founder": "Molla Samser",
+        "designer_tester": "Rima Khatun",
+        "email": "help@rskworld.in",
+        "phone": "+91 93305 39277"
+    },
+    "info": {
+        "description": "Object Detection Dataset",
+        "url": "https://rskworld.in",
+        "version": "1.0",
+        "year": 2026,
+        "contributor": "RSK World - Molla Samser",
+        "date_created": "2026-01-01"
+    },
+    "licenses": [
+        {
+            "id": 1,
+            "name": "Free for Educational Use",
+            "url": "https://rskworld.in/terms"
+        }
+    ],
+    "categories": [
+        {"id": 0, "name": "person", "supercategory": "human"},
+        {"id": 1, "name": "car", "supercategory": "vehicle"},
+        {"id": 2, "name": "dog", "supercategory": "animal"},
+        {"id": 3, "name": "cat", "supercategory": "animal"},
+        {"id": 4, "name": "bicycle", "supercategory": "vehicle"},
+        {"id": 5, "name": "motorcycle", "supercategory": "vehicle"},
+        {"id": 6, "name": "bus", "supercategory": "vehicle"},
+        {"id": 7, "name": "truck", "supercategory": "vehicle"},
+        {"id": 8, "name": "bird", "supercategory": "animal"},
+        {"id": 9, "name": "chair", "supercategory": "furniture"}
+    ],
+    "images": [
+        {
+            "id": 1,
+            "file_name": "train/images/image_001.jpg",
+            "width": 640,
+            "height": 480,
+            "date_captured": "2026-01-01",
+            "license": 1
+        },
+        {
+            "id": 2,
+            "file_name": "train/images/image_002.jpg",
+            "width": 640,
+            "height": 480,
+            "date_captured": "2026-01-01",
+            "license": 1
+        },
+        {
+            "id": 3,
+            "file_name": "train/images/image_003.jpg",
+            "width": 640,
+            "height": 480,
+            "date_captured": "2026-01-01",
+            "license": 1
+        }
+    ],
+    "annotations": [
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 0,
+            "bbox": [145, 97, 150, 330],
+            "area": 49500,
+            "segmentation": [],
+            "iscrowd": 0
+        },
+        {
+            "id": 2,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [380, 180, 200, 120],
+            "area": 24000,
+            "segmentation": [],
+            "iscrowd": 0
+        },
+        {
+            "id": 3,
+            "image_id": 2,
+            "category_id": 2,
+            "bbox": [50, 300, 120, 100],
+            "area": 12000,
+            "segmentation": [],
+            "iscrowd": 0
+        },
+        {
+            "id": 4,
+            "image_id": 2,
+            "category_id": 3,
+            "bbox": [400, 280, 100, 90],
+            "area": 9000,
+            "segmentation": [],
+            "iscrowd": 0
+        },
+        {
+            "id": 5,
+            "image_id": 3,
+            "category_id": 0,
+            "bbox": [200, 50, 180, 400],
+            "area": 72000,
+            "segmentation": [],
+            "iscrowd": 0
+        }
+    ]
+}
+

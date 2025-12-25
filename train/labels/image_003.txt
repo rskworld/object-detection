@@ -1,0 +1,6 @@
+# Object Detection Dataset - Sample YOLO Annotation
+# Website: https://rskworld.in | Founder: Molla Samser
+# Format: class_id x_center y_center width height (normalized)
+0 0.312500 0.520833 0.281250 0.833333
+4 0.781250 0.750000 0.187500 0.291667
+

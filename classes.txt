@@ -1,0 +1,21 @@
+# ==========================================================
+#   Object Detection Dataset - Class Labels
+# ==========================================================
+#   Website: https://rskworld.in
+#   Founder: Molla Samser
+#   Designer & Tester: Rima Khatun
+#   Email: help@rskworld.in
+#   © 2026 RSK World - All Rights Reserved
+# ==========================================================
+
+person
+car
+dog
+cat
+bicycle
+motorcycle
+bus
+truck
+bird
+chair
+

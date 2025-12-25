@@ -1,0 +1,1271 @@
+<!--
+==========================================================
+  Object Detection Dataset - RSK World
+==========================================================
+  Project: Object Detection Dataset
+  Category: Image Data / Computer Vision
+  Description: Annotated object detection dataset with 
+               bounding boxes for training YOLO, R-CNN, 
+               and other object detection models.
+  
+  Technologies: PNG, JPG, JSON, OpenCV, YOLO
+  Difficulty: Intermediate
+  
+==========================================================
+  Developer Information
+==========================================================
+  Website: https://rskworld.in
+  Founder: Molla Samser
+  Designer & Tester: Rima Khatun
+  Email: help@rskworld.in
+  Phone: +91 93305 39277
+  
+  © 2026 RSK World - All Rights Reserved
+  Free Programming Resources & Source Code
+==========================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Object Detection Dataset - Annotated bounding box dataset for YOLO, R-CNN, SSD training. Free download from RSK World.">
+    <meta name="keywords" content="object detection, YOLO dataset, R-CNN, bounding box, computer vision, machine learning, deep learning, RSK World">
+    <meta name="author" content="Molla Samser - RSK World">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Object Detection Dataset - RSK World">
+    <meta property="og:description" content="Annotated object detection dataset with bounding boxes for training YOLO, R-CNN, and other object detection models.">
+    <meta property="og:image" content="./object-detection.png">
+    <meta property="og:url" content="https://rskworld.in/object-detection/">
+    <meta property="og:type" content="website">
+    
+    <title>Object Detection Dataset - RSK World</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://rskworld.in/assets/images/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="neural-network">
+                <div class="neuron n1"></div>
+                <div class="neuron n2"></div>
+                <div class="neuron n3"></div>
+                <div class="neuron n4"></div>
+                <div class="neuron n5"></div>
+                <div class="neuron n6"></div>
+                <div class="connection c1"></div>
+                <div class="connection c2"></div>
+                <div class="connection c3"></div>
+                <div class="connection c4"></div>
+                <div class="connection c5"></div>
+                <div class="connection c6"></div>
+            </div>
+            <div class="preloader-text">
+                <span>Loading</span>
+                <span class="dot">.</span>
+                <span class="dot">.</span>
+                <span class="dot">.</span>
+            </div>
+            <div class="preloader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cursor Effects -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-grid"></div>
+        <div class="particles" id="particles"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+        <!-- Neural Network Background -->
+        <canvas id="neuralCanvas"></canvas>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="https://rskworld.in" class="logo" target="_blank">
+                    <div class="logo-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <span class="logo-text">RSK World</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="#features" data-tooltip="Features"><i class="fas fa-star"></i> Features</a>
+                    <a href="#preview" data-tooltip="Preview"><i class="fas fa-eye"></i> Preview</a>
+                    <a href="#statistics" data-tooltip="Statistics"><i class="fas fa-chart-bar"></i> Stats</a>
+                    <a href="#playground" data-tooltip="Playground"><i class="fas fa-gamepad"></i> Playground</a>
+                    <a href="https://rskworld.in/contact.php" target="_blank" data-tooltip="Contact"><i class="fas fa-envelope"></i> Contact</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="sound-toggle" id="soundToggle" title="Toggle Sound">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features"><i class="fas fa-star"></i> Features</a>
+        <a href="#preview"><i class="fas fa-eye"></i> Preview</a>
+        <a href="#statistics"><i class="fas fa-chart-bar"></i> Stats</a>
+        <a href="#playground"><i class="fas fa-gamepad"></i> Playground</a>
+        <a href="https://rskworld.in/contact.php" target="_blank"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge animate-float">
+                    <div class="badge-pulse"></div>
+                    <i class="fas fa-layer-group"></i>
+                    <span>Image Data</span>
+                    <span class="badge-new">NEW</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="typewriter" id="typewriter"></span>
+                    <span class="cursor-blink">|</span>
+                </h1>
+                <p class="hero-description animate-fade-up" style="animation-delay: 0.3s">
+                    Annotated object detection dataset with bounding boxes for training YOLO, R-CNN, SSD, 
+                    and other object detection models. Perfect for computer vision research and deep learning projects.
+                </p>
+                
+                <!-- Live Stats Counter -->
+                <div class="hero-stats">
+                    <div class="stat-item glass-card" data-count="1000">
+                        <div class="stat-icon pulse-glow"><i class="fas fa-images"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value counter" data-target="1000">0</span>
+                            <span class="stat-label">Images</span>
+                        </div>
+                        <div class="stat-ring">
+                            <svg viewBox="0 0 36 36">
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="0"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-item glass-card" data-count="10">
+                        <div class="stat-icon pulse-glow"><i class="fas fa-tags"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value counter" data-target="10">0</span>
+                            <span class="stat-label">Classes</span>
+                        </div>
+                        <div class="stat-ring">
+                            <svg viewBox="0 0 36 36">
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="0"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-item glass-card" data-count="5000">
+                        <div class="stat-icon pulse-glow"><i class="fas fa-vector-square"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value counter" data-target="5000">0</span>
+                            <span class="stat-label">Annotations</span>
+                        </div>
+                        <div class="stat-ring">
+                            <svg viewBox="0 0 36 36">
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="0"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="./object-detection.zip" class="btn btn-primary magnetic" download id="downloadBtn">
+                        <span class="btn-bg"></span>
+                        <i class="fas fa-download"></i>
+                        <span>Download Dataset</span>
+                        <div class="btn-shine"></div>
+                    </a>
+                    <a href="#playground" class="btn btn-secondary magnetic">
+                        <span class="btn-bg"></span>
+                        <i class="fas fa-play"></i>
+                        <span>Try Playground</span>
+                    </a>
+                </div>
+                
+                <!-- Keyboard Shortcuts Hint -->
+                <div class="keyboard-hints">
+                    <span class="kbd">D</span> Download
+                    <span class="kbd">T</span> Theme
+                    <span class="kbd">S</span> Stats
+                    <span class="kbd">?</span> Shortcuts
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="detection-demo glass-card">
+                    <div class="demo-header">
+                        <div class="demo-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="demo-title">object_detection.py</span>
+                        <div class="demo-actions">
+                            <button class="demo-btn" id="refreshDemo" title="Refresh Demo"><i class="fas fa-sync-alt"></i></button>
+                            <button class="demo-btn" id="pauseDemo" title="Pause Animation"><i class="fas fa-pause"></i></button>
+                        </div>
+                    </div>
+                    <div class="demo-image" id="demoContainer">
+                        <div class="demo-placeholder">
+                            <i class="fas fa-image"></i>
+                            <span>Sample Image</span>
+                        </div>
+                        <!-- Animated Bounding Boxes -->
+                        <div class="bounding-box box-1" data-class="person" data-conf="0.95">
+                            <span class="box-label"><i class="fas fa-user"></i> Person (95%)</span>
+                            <div class="box-corners">
+                                <span class="corner tl"></span>
+                                <span class="corner tr"></span>
+                                <span class="corner bl"></span>
+                                <span class="corner br"></span>
+                            </div>
+                        </div>
+                        <div class="bounding-box box-2" data-class="car" data-conf="0.89">
+                            <span class="box-label"><i class="fas fa-car"></i> Car (89%)</span>
+                            <div class="box-corners">
+                                <span class="corner tl"></span>
+                                <span class="corner tr"></span>
+                                <span class="corner bl"></span>
+                                <span class="corner br"></span>
+                            </div>
+                        </div>
+                        <div class="bounding-box box-3" data-class="dog" data-conf="0.92">
+                            <span class="box-label"><i class="fas fa-dog"></i> Dog (92%)</span>
+                            <div class="box-corners">
+                                <span class="corner tl"></span>
+                                <span class="corner tr"></span>
+                                <span class="corner bl"></span>
+                                <span class="corner br"></span>
+                            </div>
+                        </div>
+                        <!-- Detection Scanner -->
+                        <div class="detection-scanner"></div>
+                        <!-- Confidence Meter -->
+                        <div class="confidence-meter">
+                            <div class="meter-label">Detection Confidence</div>
+                            <div class="meter-bar">
+                                <div class="meter-fill" style="width: 92%"></div>
+                            </div>
+                            <div class="meter-value">92%</div>
+                        </div>
+                    </div>
+                    <div class="demo-info">
+                        <div class="info-item">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Real-time Detection</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>30+ FPS</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>High Accuracy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3D Floating Elements -->
+                <div class="floating-elements">
+                    <div class="float-elem elem-1"><i class="fab fa-python"></i></div>
+                    <div class="float-elem elem-2"><i class="fas fa-brain"></i></div>
+                    <div class="float-elem elem-3"><i class="fas fa-code"></i></div>
+                    <div class="float-elem elem-4"><i class="fas fa-database"></i></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-sparkles"></i> Features</span>
+                <h2 class="section-title glitch" data-text="Dataset Features">Dataset Features</h2>
+                <p class="section-subtitle">Everything you need for object detection model training</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-tilt>
+                    <div class="feature-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-vector-square"></i>
+                        <div class="icon-particles"></div>
+                    </div>
+                    <h3>Bounding Box Annotations</h3>
+                    <p>Precise bounding box coordinates for every object in each image with pixel-perfect accuracy.</p>
+                    <div class="feature-tag">Accuracy: 99.5%</div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-th-large"></i>
+                        <div class="icon-particles"></div>
+                    </div>
+                    <h3>Multiple Object Classes</h3>
+                    <p>10 different object categories including persons, vehicles, animals, and common objects.</p>
+                    <div class="feature-tag">10 Classes</div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-random"></i>
+                        <div class="icon-particles"></div>
+                    </div>
+                    <h3>Training & Validation Sets</h3>
+                    <p>Pre-split dataset with 80% training and 20% validation data for immediate use.</p>
+                    <div class="feature-tag">80/20 Split</div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fab fa-python"></i>
+                        <div class="icon-particles"></div>
+                    </div>
+                    <h3>YOLO Format Compatible</h3>
+                    <p>Ready-to-use annotations in YOLO format (txt files) for YOLOv5, YOLOv7, and YOLOv8.</p>
+                    <div class="feature-tag">YOLOv8 Ready</div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                        <div class="icon-particles"></div>
+                    </div>
+                    <h3>COCO Format Available</h3>
+                    <p>Complete COCO JSON annotations for compatibility with Detectron2 and other frameworks.</p>
+                    <div class="feature-tag">JSON Export</div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-file-image"></i>
+                        <div class="icon-particles"></div>
+                    </div>
+                    <h3>High Quality Images</h3>
+                    <p>High resolution PNG and JPG images with diverse lighting and background conditions.</p>
+                    <div class="feature-tag">HD Quality</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Statistics Section -->
+    <section class="statistics" id="statistics">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-chart-pie"></i> Analytics</span>
+                <h2 class="section-title">Dataset Statistics</h2>
+                <p class="section-subtitle">Interactive visualization of dataset distribution</p>
+            </div>
+            <div class="stats-dashboard">
+                <div class="stats-card chart-card glass-card">
+                    <h3><i class="fas fa-chart-pie"></i> Class Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="classChart"></canvas>
+                    </div>
+                </div>
+                <div class="stats-card chart-card glass-card">
+                    <h3><i class="fas fa-chart-bar"></i> Annotations per Class</h3>
+                    <div class="chart-container">
+                        <canvas id="annotationChart"></canvas>
+                    </div>
+                </div>
+                <div class="stats-card metrics-card glass-card">
+                    <h3><i class="fas fa-tachometer-alt"></i> Performance Metrics</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <div class="metric-circle" data-value="92">
+                                <svg viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"/>
+                                    <path class="metric-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="url(#gradient1)" stroke-width="3" stroke-dasharray="92, 100"/>
+                                </svg>
+                                <span class="metric-value">92%</span>
+                            </div>
+                            <span class="metric-label">mAP@0.5</span>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-circle" data-value="88">
+                                <svg viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"/>
+                                    <path class="metric-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="url(#gradient2)" stroke-width="3" stroke-dasharray="88, 100"/>
+                                </svg>
+                                <span class="metric-value">88%</span>
+                            </div>
+                            <span class="metric-label">Precision</span>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-circle" data-value="85">
+                                <svg viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"/>
+                                    <path class="metric-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="url(#gradient3)" stroke-width="3" stroke-dasharray="85, 100"/>
+                                </svg>
+                                <span class="metric-value">85%</span>
+                            </div>
+                            <span class="metric-label">Recall</span>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-circle" data-value="30">
+                                <svg viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"/>
+                                    <path class="metric-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="url(#gradient4)" stroke-width="3" stroke-dasharray="30, 100"/>
+                                </svg>
+                                <span class="metric-value">30ms</span>
+                            </div>
+                            <span class="metric-label">Inference</span>
+                        </div>
+                    </div>
+                    <!-- SVG Gradients -->
+                    <svg style="position: absolute; width: 0; height: 0;">
+                        <defs>
+                            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#0EA5A5"/>
+                                <stop offset="100%" stop-color="#4ECDC4"/>
+                            </linearGradient>
+                            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#FF6B6B"/>
+                                <stop offset="100%" stop-color="#FF8E8E"/>
+                            </linearGradient>
+                            <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#FFE66D"/>
+                                <stop offset="100%" stop-color="#FFF3A3"/>
+                            </linearGradient>
+                            <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#A8E6CF"/>
+                                <stop offset="100%" stop-color="#DCEDC1"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Playground Section -->
+    <section class="playground" id="playground">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-flask"></i> Interactive</span>
+                <h2 class="section-title">Annotation Playground</h2>
+                <p class="section-subtitle">Draw bounding boxes and explore annotation formats</p>
+            </div>
+            <div class="playground-container">
+                <div class="playground-canvas-wrapper glass-card">
+                    <div class="canvas-toolbar">
+                        <button class="tool-btn active" data-tool="draw" title="Draw Box">
+                            <i class="fas fa-draw-polygon"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="select" title="Select">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="move" title="Move">
+                            <i class="fas fa-arrows-alt"></i>
+                        </button>
+                        <div class="toolbar-divider"></div>
+                        <button class="tool-btn" id="clearCanvas" title="Clear All">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button class="tool-btn" id="undoAction" title="Undo">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                        <div class="toolbar-divider"></div>
+                        <select class="class-selector" id="classSelector">
+                            <option value="0">Person</option>
+                            <option value="1">Car</option>
+                            <option value="2">Dog</option>
+                            <option value="3">Cat</option>
+                            <option value="4">Bicycle</option>
+                            <option value="5">Motorcycle</option>
+                            <option value="6">Bus</option>
+                            <option value="7">Truck</option>
+                            <option value="8">Bird</option>
+                            <option value="9">Chair</option>
+                        </select>
+                    </div>
+                    <div class="canvas-area" id="playgroundCanvas">
+                        <div class="canvas-placeholder">
+                            <i class="fas fa-draw-polygon"></i>
+                            <p>Click and drag to draw bounding boxes</p>
+                            <span class="hint">Select a class from the dropdown above</span>
+                        </div>
+                        <!-- Drawn boxes will appear here -->
+                    </div>
+                    <div class="canvas-status">
+                        <span><i class="fas fa-vector-square"></i> Boxes: <strong id="boxCount">0</strong></span>
+                        <span><i class="fas fa-expand"></i> Canvas: 640 x 480</span>
+                    </div>
+                </div>
+                <div class="playground-output glass-card">
+                    <div class="output-tabs">
+                        <button class="output-tab active" data-format="yolo">YOLO</button>
+                        <button class="output-tab" data-format="coco">COCO</button>
+                        <button class="output-tab" data-format="pascal">Pascal VOC</button>
+                    </div>
+                    <div class="output-content">
+                        <pre class="output-code" id="outputCode"><code># Draw boxes to see annotations here
+# Format: class_id x_center y_center width height</code></pre>
+                        <button class="copy-btn" id="copyOutput" title="Copy to Clipboard">
+                            <i class="fas fa-copy"></i>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                    <div class="output-actions">
+                        <button class="btn btn-small" id="downloadYolo">
+                            <i class="fas fa-download"></i> Download .txt
+                        </button>
+                        <button class="btn btn-small" id="downloadJson">
+                            <i class="fas fa-download"></i> Download .json
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dataset Preview Section -->
+    <section class="preview" id="preview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-images"></i> Gallery</span>
+                <h2 class="section-title">Dataset Preview</h2>
+                <p class="section-subtitle">Sample images with annotations from the dataset</p>
+            </div>
+            
+            <!-- Class Filter -->
+            <div class="class-filter">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i> All
+                </button>
+                <button class="filter-btn" data-filter="person">
+                    <i class="fas fa-user"></i> Person
+                </button>
+                <button class="filter-btn" data-filter="car">
+                    <i class="fas fa-car"></i> Car
+                </button>
+                <button class="filter-btn" data-filter="dog">
+                    <i class="fas fa-dog"></i> Dog
+                </button>
+                <button class="filter-btn" data-filter="cat">
+                    <i class="fas fa-cat"></i> Cat
+                </button>
+                <button class="filter-btn" data-filter="bicycle">
+                    <i class="fas fa-bicycle"></i> Bicycle
+                </button>
+            </div>
+            
+            <div class="preview-gallery" id="previewGallery">
+                <div class="preview-card" data-class="person" data-aos="zoom-in">
+                    <div class="preview-image">
+                        <div class="preview-placeholder"><i class="fas fa-user"></i></div>
+                        <div class="preview-overlay">
+                            <span class="class-badge person"><i class="fas fa-user"></i> Person</span>
+                            <button class="zoom-btn" data-image="person"><i class="fas fa-search-plus"></i></button>
+                        </div>
+                        <div class="preview-annotations">
+                            <span>3 annotations</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-card" data-class="car" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="preview-image">
+                        <div class="preview-placeholder"><i class="fas fa-car"></i></div>
+                        <div class="preview-overlay">
+                            <span class="class-badge car"><i class="fas fa-car"></i> Car</span>
+                            <button class="zoom-btn" data-image="car"><i class="fas fa-search-plus"></i></button>
+                        </div>
+                        <div class="preview-annotations">
+                            <span>5 annotations</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-card" data-class="dog" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="preview-image">
+                        <div class="preview-placeholder"><i class="fas fa-dog"></i></div>
+                        <div class="preview-overlay">
+                            <span class="class-badge dog"><i class="fas fa-dog"></i> Dog</span>
+                            <button class="zoom-btn" data-image="dog"><i class="fas fa-search-plus"></i></button>
+                        </div>
+                        <div class="preview-annotations">
+                            <span>2 annotations</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-card" data-class="cat" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="preview-image">
+                        <div class="preview-placeholder"><i class="fas fa-cat"></i></div>
+                        <div class="preview-overlay">
+                            <span class="class-badge cat"><i class="fas fa-cat"></i> Cat</span>
+                            <button class="zoom-btn" data-image="cat"><i class="fas fa-search-plus"></i></button>
+                        </div>
+                        <div class="preview-annotations">
+                            <span>4 annotations</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-card" data-class="bicycle" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="preview-image">
+                        <div class="preview-placeholder"><i class="fas fa-bicycle"></i></div>
+                        <div class="preview-overlay">
+                            <span class="class-badge bicycle"><i class="fas fa-bicycle"></i> Bicycle</span>
+                            <button class="zoom-btn" data-image="bicycle"><i class="fas fa-search-plus"></i></button>
+                        </div>
+                        <div class="preview-annotations">
+                            <span>2 annotations</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-card" data-class="motorcycle" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="preview-image">
+                        <div class="preview-placeholder"><i class="fas fa-motorcycle"></i></div>
+                        <div class="preview-overlay">
+                            <span class="class-badge motorcycle"><i class="fas fa-motorcycle"></i> Motorcycle</span>
+                            <button class="zoom-btn" data-image="motorcycle"><i class="fas fa-search-plus"></i></button>
+                        </div>
+                        <div class="preview-annotations">
+                            <span>3 annotations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dataset Structure Section -->
+    <section class="structure" id="structure">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-folder-tree"></i> Structure</span>
+                <h2 class="section-title">Dataset Structure</h2>
+                <p class="section-subtitle">Organized directory structure for easy integration</p>
+            </div>
+            <div class="structure-content">
+                <div class="folder-tree glass-card">
+                    <div class="tree-header">
+                        <i class="fas fa-terminal"></i>
+                        <span>File Explorer</span>
+                    </div>
+                    <div class="tree-item root" data-expanded="true">
+                        <i class="fas fa-folder-open"></i>
+                        <span>object-detection-dataset/</span>
+                        <span class="tree-badge">root</span>
+                    </div>
+                    <div class="tree-item level-1 expandable" data-expanded="true">
+                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-folder-open"></i>
+                        <span>train/</span>
+                        <span class="tree-info">Training data</span>
+                    </div>
+                    <div class="tree-item level-2">
+                        <i class="fas fa-folder"></i>
+                        <span>images/</span>
+                        <span class="tree-info file-count">800 files</span>
+                    </div>
+                    <div class="tree-item level-2">
+                        <i class="fas fa-folder"></i>
+                        <span>labels/</span>
+                        <span class="tree-info file-count">800 files</span>
+                    </div>
+                    <div class="tree-item level-1 expandable" data-expanded="true">
+                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-folder-open"></i>
+                        <span>valid/</span>
+                        <span class="tree-info">Validation data</span>
+                    </div>
+                    <div class="tree-item level-2">
+                        <i class="fas fa-folder"></i>
+                        <span>images/</span>
+                        <span class="tree-info file-count">200 files</span>
+                    </div>
+                    <div class="tree-item level-2">
+                        <i class="fas fa-folder"></i>
+                        <span>labels/</span>
+                        <span class="tree-info file-count">200 files</span>
+                    </div>
+                    <div class="tree-item level-1 file">
+                        <i class="fas fa-file-code yaml"></i>
+                        <span>data.yaml</span>
+                        <span class="tree-info">YOLO config</span>
+                    </div>
+                    <div class="tree-item level-1 file">
+                        <i class="fas fa-file-code json"></i>
+                        <span>annotations.json</span>
+                        <span class="tree-info">COCO format</span>
+                    </div>
+                    <div class="tree-item level-1 file">
+                        <i class="fas fa-file-alt"></i>
+                        <span>classes.txt</span>
+                        <span class="tree-info">10 classes</span>
+                    </div>
+                    <div class="tree-item level-1 file">
+                        <i class="fab fa-markdown"></i>
+                        <span>README.md</span>
+                        <span class="tree-info">Documentation</span>
+                    </div>
+                </div>
+                <div class="code-preview glass-card">
+                    <div class="code-header">
+                        <div class="code-tabs">
+                            <button class="code-tab active" data-tab="yolo">
+                                <i class="fas fa-file-code"></i> YOLO
+                            </button>
+                            <button class="code-tab" data-tab="coco">
+                                <i class="fas fa-file-code"></i> COCO
+                            </button>
+                            <button class="code-tab" data-tab="yaml">
+                                <i class="fas fa-cog"></i> Config
+                            </button>
+                        </div>
+                        <button class="copy-code-btn" id="copyCodeBtn" title="Copy Code">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="code-content">
+                        <pre class="code-block" id="yolo-code"><code><span class="comment"># YOLO Annotation Format</span>
+<span class="comment"># class_id x_center y_center width height</span>
+<span class="comment"># All values are normalized (0-1)</span>
+
+<span class="number">0</span> <span class="number">0.453125</span> <span class="number">0.546875</span> <span class="number">0.234375</span> <span class="number">0.687500</span>
+<span class="number">1</span> <span class="number">0.765625</span> <span class="number">0.421875</span> <span class="number">0.312500</span> <span class="number">0.234375</span>
+<span class="number">2</span> <span class="number">0.156250</span> <span class="number">0.718750</span> <span class="number">0.187500</span> <span class="number">0.250000</span></code></pre>
+                        <pre class="code-block hidden" id="coco-code"><code><span class="comment">// COCO JSON Annotation Format</span>
+{
+  <span class="key">"images"</span>: [{
+    <span class="key">"id"</span>: <span class="number">1</span>,
+    <span class="key">"file_name"</span>: <span class="string">"image_001.jpg"</span>,
+    <span class="key">"width"</span>: <span class="number">640</span>,
+    <span class="key">"height"</span>: <span class="number">480</span>
+  }],
+  <span class="key">"annotations"</span>: [{
+    <span class="key">"id"</span>: <span class="number">1</span>,
+    <span class="key">"image_id"</span>: <span class="number">1</span>,
+    <span class="key">"category_id"</span>: <span class="number">0</span>,
+    <span class="key">"bbox"</span>: [<span class="number">145</span>, <span class="number">97</span>, <span class="number">150</span>, <span class="number">330</span>],
+    <span class="key">"area"</span>: <span class="number">49500</span>
+  }],
+  <span class="key">"categories"</span>: [
+    {<span class="key">"id"</span>: <span class="number">0</span>, <span class="key">"name"</span>: <span class="string">"person"</span>}
+  ]
+}</code></pre>
+                        <pre class="code-block hidden" id="yaml-code"><code><span class="comment"># YOLOv5/YOLOv8 Dataset Configuration</span>
+
+<span class="key">path</span>: ./object-detection-dataset
+<span class="key">train</span>: train/images
+<span class="key">val</span>: valid/images
+
+<span class="key">nc</span>: <span class="number">10</span>  <span class="comment"># number of classes</span>
+
+<span class="key">names</span>:
+  <span class="number">0</span>: person
+  <span class="number">1</span>: car
+  <span class="number">2</span>: dog
+  <span class="number">3</span>: cat
+  <span class="number">4</span>: bicycle
+  <span class="number">5</span>: motorcycle
+  <span class="number">6</span>: bus
+  <span class="number">7</span>: truck
+  <span class="number">8</span>: bird
+  <span class="number">9</span>: chair</code></pre>
+                    </div>
+                    <div class="code-line-numbers" id="lineNumbers"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Object Classes Section -->
+    <section class="classes" id="classes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-tags"></i> Categories</span>
+                <h2 class="section-title">Object Classes</h2>
+                <p class="section-subtitle">10 annotated object categories in the dataset</p>
+            </div>
+            <div class="classes-carousel">
+                <div class="classes-track" id="classesTrack">
+                    <div class="class-card" data-tilt data-class="person">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #FF6B6B;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #FF6B6B;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Person</span>
+                            <span class="class-count">1,200+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 100%; background: #FF6B6B;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="car">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #4ECDC4;">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #4ECDC4;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Car</span>
+                            <span class="class-count">800+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 67%; background: #4ECDC4;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="dog">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #FFE66D;">
+                                <i class="fas fa-dog"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #FFE66D;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Dog</span>
+                            <span class="class-count">450+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 38%; background: #FFE66D;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="cat">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #A8E6CF;">
+                                <i class="fas fa-cat"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #A8E6CF;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Cat</span>
+                            <span class="class-count">400+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 33%; background: #A8E6CF;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="bicycle">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #DDA0DD;">
+                                <i class="fas fa-bicycle"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #DDA0DD;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Bicycle</span>
+                            <span class="class-count">350+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 29%; background: #DDA0DD;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="motorcycle">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #98D8C8;">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #98D8C8;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Motorcycle</span>
+                            <span class="class-count">300+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 25%; background: #98D8C8;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="bus">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #F7DC6F;">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #F7DC6F;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Bus</span>
+                            <span class="class-count">250+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 21%; background: #F7DC6F;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="truck">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #85C1E9;">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #85C1E9;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Truck</span>
+                            <span class="class-count">280+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 23%; background: #85C1E9;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="bird">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #F5B7B1;">
+                                <i class="fas fa-dove"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #F5B7B1;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Bird</span>
+                            <span class="class-count">350+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 29%; background: #F5B7B1;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class-card" data-tilt data-class="chair">
+                        <div class="class-visual">
+                            <div class="class-icon" style="--class-color: #D7BDE2;">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <div class="class-glow" style="--class-color: #D7BDE2;"></div>
+                        </div>
+                        <div class="class-info">
+                            <span class="class-name">Chair</span>
+                            <span class="class-count">420+ instances</span>
+                            <div class="class-bar">
+                                <div class="bar-fill" style="width: 35%; background: #D7BDE2;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section class="quickstart" id="quickstart">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-rocket"></i> Quick Start</span>
+                <h2 class="section-title">Get Started in Minutes</h2>
+                <p class="section-subtitle">Follow these steps to train your object detection model</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-step="1">
+                    <div class="timeline-marker">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <h3>Download Dataset</h3>
+                        <p>Download and extract the dataset zip file to your project directory.</p>
+                        <div class="code-snippet">
+                            <code>unzip object-detection.zip -d ./data/</code>
+                            <button class="snippet-copy" data-code="unzip object-detection.zip -d ./data/"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-step="2">
+                    <div class="timeline-marker">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <h3>Install Dependencies</h3>
+                        <p>Install required Python packages for your chosen framework.</p>
+                        <div class="code-snippet">
+                            <code>pip install ultralytics opencv-python</code>
+                            <button class="snippet-copy" data-code="pip install ultralytics opencv-python"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-step="3">
+                    <div class="timeline-marker">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <h3>Train Your Model</h3>
+                        <p>Start training using YOLOv8 or your preferred framework.</p>
+                        <div class="code-snippet">
+                            <code>yolo train model=yolov8n.pt data=data.yaml epochs=100</code>
+                            <button class="snippet-copy" data-code="yolo train model=yolov8n.pt data=data.yaml epochs=100"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-step="4">
+                    <div class="timeline-marker">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <h3>Run Inference</h3>
+                        <p>Use your trained model for object detection on new images.</p>
+                        <div class="code-snippet">
+                            <code>yolo predict model=best.pt source=image.jpg</code>
+                            <button class="snippet-copy" data-code="yolo predict model=best.pt source=image.jpg"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="download-card glass-card">
+                <div class="download-bg">
+                    <div class="download-particles"></div>
+                </div>
+                <div class="download-content">
+                    <div class="download-icon">
+                        <i class="fas fa-cloud-download-alt"></i>
+                        <div class="icon-ring"></div>
+                        <div class="icon-ring delay"></div>
+                    </div>
+                    <h2>Ready to Download?</h2>
+                    <p>Get the complete object detection dataset with all annotations and start training your models today!</p>
+                    <div class="download-info">
+                        <div class="info-badge glass">
+                            <i class="fas fa-file-archive"></i>
+                            <span>~150 MB</span>
+                        </div>
+                        <div class="info-badge glass">
+                            <i class="fas fa-images"></i>
+                            <span>1000+ Images</span>
+                        </div>
+                        <div class="info-badge glass">
+                            <i class="fas fa-certificate"></i>
+                            <span>Free License</span>
+                        </div>
+                    </div>
+                    <a href="./object-detection.zip" class="btn btn-download magnetic" download id="mainDownloadBtn">
+                        <span class="btn-bg"></span>
+                        <i class="fas fa-download"></i>
+                        <span>Download Dataset (ZIP)</span>
+                        <div class="btn-shine"></div>
+                    </a>
+                    <div class="download-progress hidden" id="downloadProgress">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="progress-text">Downloading... 0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,69.3C960,85,1056,107,1152,101.3C1248,96,1344,64,1392,48L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="https://rskworld.in" class="footer-logo" target="_blank">
+                        <div class="logo-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <span>RSK World</span>
+                    </a>
+                    <p>Free Programming Resources & Source Code</p>
+                    <div class="social-links">
+                        <a href="https://github.com/rskworld" target="_blank" title="GitHub" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://twitter.com/rskworld" target="_blank" title="Twitter" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/rskworld" target="_blank" title="LinkedIn" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://youtube.com/@rskworld" target="_blank" title="YouTube" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com/rskworld" target="_blank" title="Instagram" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://rskworld.in" target="_blank">Home</a></li>
+                        <li><a href="https://rskworld.in/data-science.php" target="_blank">Data Science</a></li>
+                        <li><a href="https://rskworld.in/about.php" target="_blank">About Us</a></li>
+                        <li><a href="https://rskworld.in/contact.php" target="_blank">Contact</a></li>
+                        <li><a href="./LICENSE" target="_blank">License (MIT)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:help@rskworld.in">help@rskworld.in</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+919330539277">+91 93305 39277</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-globe"></i>
+                            <a href="https://rskworld.in" target="_blank">rskworld.in</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates and new datasets!</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-credits">
+                    <p>Founded by <strong>Molla Samser</strong> | Designer & Tester: <strong>Rima Khatun</strong></p>
+                </div>
+                <p class="copyright">
+                    &copy; 2026 <a href="https://rskworld.in" target="_blank">RSK World</a>. All Rights Reserved. | 
+                    <a href="./LICENSE" target="_blank"><i class="fas fa-file-contract"></i> MIT License</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+        <svg class="progress-ring" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+            <circle class="progress-ring-circle" cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="100"/>
+        </svg>
+    </button>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div class="modal" id="shortcutsModal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3><i class="fas fa-keyboard"></i> Keyboard Shortcuts</h3>
+                <button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="shortcut-list">
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>D</kbd></span>
+                        <span class="shortcut-desc">Download Dataset</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>T</kbd></span>
+                        <span class="shortcut-desc">Toggle Theme</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>S</kbd></span>
+                        <span class="shortcut-desc">Go to Statistics</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>P</kbd></span>
+                        <span class="shortcut-desc">Go to Playground</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>M</kbd></span>
+                        <span class="shortcut-desc">Toggle Sound</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>↑</kbd></span>
+                        <span class="shortcut-desc">Scroll to Top</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Esc</kbd></span>
+                        <span class="shortcut-desc">Close Modal</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>?</kbd></span>
+                        <span class="shortcut-desc">Show Shortcuts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Image Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close"><i class="fas fa-times"></i></button>
+        <div class="lightbox-content">
+            <img src="" alt="Preview" id="lightboxImage">
+            <div class="lightbox-info">
+                <span class="lightbox-class"></span>
+                <span class="lightbox-annotations"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="clickSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2teleEckVK/NpXFJGDiYx7CQdFU0ZrG2lGROJkR5tLuRgW1MXqmzl3BEHEiYyrujfEwkS6DJqJFzQSNKoMiuoIBVN1qPwbmkfVA7WYO7urePhFgwabG0moFLI1Slw62Lczgsd6q9q5aBTjRhqLuqkYBOOmeVu7Cvl4dONGaivbCfhU86YZO7srOhjVU6Wpq7r6ybjVczXJ+7qaOfk1s0Xp+5qKKelFs4YZ+2qKaik1s3Y6C1qKWglFw4Y6K2p6SdkF04ZaO1pqKcj102ZaO0paGakl46Z6KzpJ6XkGA5aKOxop2VjmE6aaKwoJyUjWI6aqKvoJuTjGM7a6GunpmRimQ8bKGtnZiPiGU9baCtm5aNhmY+bqCrmZSKhGdAbp+ql5KHgWhBb56plZCFf2lCcJ2olI+EfWpDcZynko2Ce2xFcp2lkIuAdG1Gc5ykjol9cW9HdJuii4d7b3BJdZqhiYV4bXJKeZmfh4N2anNLepidiIJ0Z3RNe5echoByZXVPfJaahX5wYnZQfZSYg3xuX3dSfpOWgXlsXHhTf5KVgHdrWnlVgJGTfnVpV3pWgZCRfHNoVHtYgo+Qe3FmUXxZg46OeW9kT31bhI2Nd21iTn5ch4yLdGtgTH9diouKc2lcSoBfjImIcGdaSoFgj4iGbmVYSIJhkIeEbGRVRoNik4aCamJTRIRklIWAaGBRQoVmloR+Zl5PP4ZomYN8ZFxNPYdqm4J6YllLO4hsnYB4X1dJOYlun352XVRHNopwoX10W1JFNItyo3xyWU9DMIx0pXpwV0xBLo12p3luVUpALI55qXdsUkc+Ko97q3VpUEU8KJB9rXNnTkI6JpF/r3FlTD84JZKBsW9iTjw2I5ODsnBgSzo0IZSFtG5eSzgwH5WHtmxcSDYuHZaJuGpaSjQsG5eLumhaRzIqGZiNvGZYRTAnF5mPvmRWQy4lFZqRwGJUQSwjE5uTwmBSPyohEZyVxF5QPScfD52XxlxOOiUdDZ6ZyFpMOCMbC5+bzFhKNiEZCaCd0FZINh8XCKCO0lRGNB0VBqGS1FJENBsTA6KU1lBCMhkRBaaW2E5AMBcPAqeY2kw+LhUNAaib3Eo8LBMMa6md4Eg6KhEJa6uf4kY4KBAH" type="audio/wav">
+    </audio>
+    <audio id="successSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRlwFAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTgFAACBiYuNjo6OjY2Mi4mHhYOBf31raWhlY2BdW1hVUk9MSUZDQDw5NjMwLSonJSIgHx4eHh8gISMlJyksLzI1OTs+QUNGSUpMTU5OTk1LSUdEQT47ODUyLywnJSMhHx4eHh8gISMkJigrLTAyNTc6PD1AQUJDQkJBQD48OTc0Ny07PTs5ODYzMC0qJyUiIB4dHBwcHBwdHh8gIiMlJygqLC0uLzAxMTEwLy4sKignJSMhIB4dHBscHB0dHh8gISIjJCUmJykqKywtLi8vLy8uLS0sKyklIB0cGxscHBwcHBwbGhkYGBgYGRkaGhscHB0dHh4eHh4eHh0dHBwaGRgXFhYVFRQUExMTEhISEhISEhISEhISEhISEhMTExQUFRUWFxcYGRkaGxwdHR4fHyAgISIjJCUmJygoKSkpKSgqKywvNDs/REZJSklGQz45NDAvLy8uLSwqKCYjIB0bGRgXFxcXFxcXFxYWFRQUExISERERERERERISEhMUFBUWFhcYGBkZGhobGxwcHBwcHBsbGhoZGRgYFxcWFhUVFBQTExISEREQEA8PDw8PDg4ODg4ODg4ODw8QEBEREhMUFRYXGBkaGxwdHh8gISIjIyQkJCQkJCQjIyIhIB8eHRwbGhkYFxYVFBQTEhEQDw4NDQwMDAsLCwsLCwsLDAwMDQ0ODg8QEBEREhISExMTExMTExMSEhEREA8PDg0NDAwLCgoKCQkJCQkJCQkJCQkKCgsLDAwNDQ4ODw8QEBERERISEhISEhISERERERAPDw4NDQwMCwsKCgkJCQgIBwcHBwcHBwgICAgJCQoKCwsLDAwMDQ0NDQ0NDQ0NDQ0MDAwLCwsKCgkJCAgHBwYGBgUFBQUFBQUFBQUGBgYHBwgICQkKCgsLDAwMDQ0NDQ0NDQ0NDAwMCwsLCgoJCQgIBwcGBgYFBQQEBAQEBAQEBQUFBgYGBwcICAgJCQoKCgoLCwsLCwsLCwsLCwoKCgkJCQgIBwcGBgYFBQUEBAQDAwMDAwMDBAQEBQUFBgYGBwcICAgICQkJCQkJCQkJCQkJCAgIBwcHBgYGBQUFBAQEAwMDAwMCAgICAgICAwMDAwQEBAUFBQYGBgcHBwcICAgICAgICAgICAgHBwcHBgYGBgUFBQQEBAQDAwMDAwICAgICAgIDAwMDBAQEBAUFBQUGBgYGBgYGBgYGBgYGBgYFBQUFBQUEBAQEAwMDAwMDAgICAgICAgICAgICAwMDAwMEBAQEBAQEBQUFBQUFBQUFBQUFBQUFBQUEBAQEBAQEBAQDAwMDAwMDAgICAgICAgICAgICAwMDAwMDAwQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAwMDAwMDAwMDAwMCAgICAgICAgICAgICAgIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMD" type="audio/wav">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

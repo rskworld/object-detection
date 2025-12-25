@@ -1,0 +1,53 @@
+# ==========================================================
+#   Object Detection Dataset - YOLO Configuration
+# ==========================================================
+#   Project: Object Detection Dataset
+#   Category: Image Data / Computer Vision
+#   Format: YOLOv5/YOLOv8 Compatible
+#   
+# ==========================================================
+#   Developer Information
+# ==========================================================
+#   Website: https://rskworld.in
+#   Founder: Molla Samser
+#   Designer & Tester: Rima Khatun
+#   Email: help@rskworld.in
+#   Phone: +91 93305 39277
+#   
+#   © 2026 RSK World - All Rights Reserved
+# ==========================================================
+
+# Dataset paths
+path: ./  # dataset root directory
+train: train/images  # train images (relative to 'path')
+val: valid/images  # val images (relative to 'path')
+test:  # test images (optional)
+
+# Number of classes
+nc: 10
+
+# Class names
+names:
+  0: person
+  1: car
+  2: dog
+  3: cat
+  4: bicycle
+  5: motorcycle
+  6: bus
+  7: truck
+  8: bird
+  9: chair
+
+# Dataset information
+# Total images: 1000+
+# Training set: 800 images (80%)
+# Validation set: 200 images (20%)
+# Total annotations: 5000+
+
+# Usage with YOLOv8:
+# yolo train model=yolov8n.pt data=data.yaml epochs=100 imgsz=640
+
+# Usage with YOLOv5:
+# python train.py --img 640 --batch 16 --epochs 100 --data data.yaml --weights yolov5s.pt
+
